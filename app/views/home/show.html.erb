@@ -1,0 +1,16 @@
+<%= form_with url: "/retrieve_news", method: :get do |form| %>
+  <%= form.label :query, "Search for:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<h1>News Portal</h1>
+<body>
+<% if @news %>
+  <h3>News</h3>
+  <% @news['articles'].map.with_index(1) do |n, index| %>
+    <a href=<%= n['url'] %>><h3><%=index %>)<%= n['title'] %> - <span> source:<%= n['source']['name'] %></span></h3></a>
+    <p> <%= n['description'] %>
+  <% end %>
+<% end %>
+</body>
